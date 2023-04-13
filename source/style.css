@@ -1,0 +1,73 @@
+.canvas-class {
+    color: rgb(131, 131, 201);
+    border: 5px solid #7c5bca;
+    border-radius: 20px;
+}
+
+body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #15a7eb);
+}
+
+h2 {
+    font-family: "Lucida Handwriting";
+    text-align: center;
+    color: aqua;
+    padding: 0px;
+
+    }
+
+.button-run,
+.button-dfs,
+.button-bfs,
+.button-bfsi {
+    font-family: "Lucida Handwriting";
+    border: 3px solid  rgb(172, 151, 221);
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: aqua;
+    margin-right:30px;
+    margin-left: 30px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.div-buttons-class {
+    display: flex;
+    justify-content: center;
+    /* background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #15a7eb); */
+}
+
+
+.div-texts-class {
+    display: grid;
+    flex-direction: column;
+    min-height: 10vh;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #15a7eb);
+}
+
+.div-canvas-and-buttons-class{
+    flex-direction: column;
+    min-height: 10vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-body-class{
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(79deg, #094b5b, #0c3742 20%, #012a3d);
+}
