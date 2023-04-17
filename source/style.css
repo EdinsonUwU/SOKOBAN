@@ -11,17 +11,13 @@ body {
     min-height: 90vh;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #15a7eb);
+    background-image: linear-gradient(79deg, #ffffff, #ffffff 20%, #ffffff);
+    
 }
 
-h2 {
-    font-family: "Lucida Handwriting";
-    text-align: center;
-    color: aqua;
-    padding: 0px;
 
-    }
 
+h2,
 .button-run,
 .button-dfs,
 .button-bfs,
@@ -37,6 +33,7 @@ h2 {
     margin-left: 30px;
     margin-top: 15px;
     font-weight: bold;
+    background-image: linear-gradient(79deg, #094b5b, #0c3742 20%, #012a3d);
 }
 
 .div-buttons-class {
@@ -60,6 +57,7 @@ h2 {
     min-height: 10vh;
     align-items: center;
     justify-content: center;
+    
 }
 
 .div-body-class{
@@ -70,4 +68,5 @@ h2 {
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(79deg, #094b5b, #0c3742 20%, #012a3d);
+    border-radius: 20px;
 }

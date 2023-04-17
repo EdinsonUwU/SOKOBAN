@@ -1,0 +1,3 @@
+arreglar el readinput
+arreglar el doStuff
+que sea el readinput y que la matriz se cree con esos datos.
