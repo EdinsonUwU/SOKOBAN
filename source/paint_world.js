@@ -17,7 +17,7 @@ export function repaint_the_map(canvas, numberOfCells) {
     }
   }
 
-  //creacion de las lineas dentro del canvas
+  //creacion de las lineas dentro del canvas - verticales
   for (var i = 0; i < canvasWidth; i = i + peaceBetwenCells) {
     canvasContext.lineWidth = 4;
     canvasContext.strokeStyle = "#7c5bca";
@@ -25,6 +25,7 @@ export function repaint_the_map(canvas, numberOfCells) {
     canvasContext.lineTo(i, canvasHeight);
     canvasContext.stroke();
   }
+  //creacion de las lineas dentro del canvas - horizontales
   for (var j = 0; j < canvasWidth; j = j + peaceBetwenCells) {
     canvasContext.lineWidth = 4;
     canvasContext.strokeStyle = "#7c5bca";
@@ -36,7 +37,7 @@ export function repaint_the_map(canvas, numberOfCells) {
 
 //funcion que va a pintar el agente, las paredes, la meta
 //agent:green; walls: black; goal:red
-export function paint_new_state(canvas, matriz) {
+export function repaint_matrix(canvas, matriz) {
   var numberOfCells = matriz.length;
   var canvasContext = canvas.getContext("2d");
   var canvasWidth = canvas.width;
