@@ -75,3 +75,7 @@ export function repaint_matrix(canvas, matriz) {
     }
   }
 }
+
+export function paint_new_state(canvas,state){
+  
+}
