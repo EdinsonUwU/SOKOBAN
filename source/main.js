@@ -1,5 +1,5 @@
 import { dfs } from "/source/dfs.js";
-import { repaint_matrix, repaint_the_map } from "/source/paint_world.js";
+import { repaint_matrix, repaint_the_map, paint_new_state } from "/source/paint_world.js";
 import { create_matrix, read_pos_agent, read_pos_boxes } from "/source/read_inputs.js";
 
 var matrix = [];
@@ -28,9 +28,10 @@ async function doStuff() {
     await new Promise((r) => setTimeout(r, 250));
     doStuff();
   } else {
+    console.log("a")
     repaint_the_map(canvas, matrix.length);// llamar esta funcion desde el dfs
     repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
-    //paint_new_state(canvas, state);
+    paint_new_state(canvas, matrix, state);
     var result = await dfs(canvas, matrix, state)// procesar y pintar
     return result
   }

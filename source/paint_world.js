@@ -76,6 +76,32 @@ export function repaint_matrix(canvas, matriz) {
   }
 }
 
-export function paint_new_state(canvas,state){
-  
+export function paint_new_state(canvas, matrix, state){
+  var pos_boxes = state[0];
+  var pos_agent = state[1];
+  var numberOfCells = matrix.length;
+  var canvasContext = canvas.getContext("2d");
+  var canvasWidth = canvas.width;
+  var peaceBetwenCells = canvasWidth / numberOfCells;
+
+  //paint boxes
+  for (var i = 0; i < pos_boxes.length; i++) {
+    console.log(pos_boxes)
+    canvasContext.fillStyle = "rgba(200, 200, 200, 0.5)";
+    canvasContext.fillRect(
+      pos_boxes[i][0] * peaceBetwenCells,
+      pos_boxes[i][1] * peaceBetwenCells,
+      peaceBetwenCells,
+      peaceBetwenCells
+    );
+  }
+
+  //paint agent
+  canvasContext.fillStyle = "rgba(0, 200, 200, 0.5)";
+  canvasContext.fillRect(
+    pos_agent[0] * peaceBetwenCells,
+    pos_agent[1] * peaceBetwenCells,
+    peaceBetwenCells,
+    peaceBetwenCells
+  );
 }
