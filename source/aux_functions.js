@@ -1,4 +1,4 @@
-export function apply_opperators(matrix,state){
+export function apply_opperators(matrix, state) {
     var numberOfCells = matrix.length
     var agentX = state[1][0]
     var agentY = state[1][1]
@@ -26,9 +26,9 @@ export function apply_opperators(matrix,state){
 
                 for (let i = 0; i < state[0].length; i++) {
                     if (JSON.stringify(state[0][i]) === JSON.stringify([agentX - 1, agentY])) {
-                        new_boxes_array.append([state[0][i][0] - 2, state[0][i][1]])
+                        new_boxes_array.push([state[0][i][0] - 1, state[0][i][1]])
                     } else {
-                        new_boxes_array.append(JSON.parse(JSON.stringify(state[0][i])))
+                        new_boxes_array.push(JSON.parse(JSON.stringify(state[0][i])))
                     }
                 }
 
@@ -55,9 +55,9 @@ export function apply_opperators(matrix,state){
 
                 for (let i = 0; i < state[0].length; i++) {
                     if (JSON.stringify(state[0][i]) === JSON.stringify([agentX, agentY - 1])) {
-                        new_boxes_array.append([state[0][i][0], state[0][i][1] - 2])
+                        new_boxes_array.push([state[0][i][0], state[0][i][1] - 1])
                     } else {
-                        new_boxes_array.append(JSON.parse(JSON.stringify(state[0][i])))
+                        new_boxes_array.push(JSON.parse(JSON.stringify(state[0][i])))
                     }
                 }
 
@@ -82,9 +82,9 @@ export function apply_opperators(matrix,state){
 
                 for (let i = 0; i < state[0].length; i++) {
                     if (JSON.stringify(state[0][i]) === JSON.stringify([agentX + 1, agentY])) {
-                        new_boxes_array.append([state[0][i][0] + 2, state[0][i][1]])
+                        new_boxes_array.push([state[0][i][0] + 1, state[0][i][1]])
                     } else {
-                        new_boxes_array.append(JSON.parse(JSON.stringify(state[0][i])))
+                        new_boxes_array.push(JSON.parse(JSON.stringify(state[0][i])))
                     }
                 }
 
@@ -94,29 +94,29 @@ export function apply_opperators(matrix,state){
         }
     }
     if (agentY + 1 < numberOfCells) {//DOWN_SENSOR
-        if (matrix[agentX][agentY+1] != 'W' &&
-            !JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY+1]))) {
+        if (matrix[agentX][agentY + 1] != 'W' &&
+            !JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY + 1]))) {
             POSSIBLE_MOVEMENTS.push([JSON.parse(JSON.stringify(state[0])),
-            [state[1][0], state[1][1]+1]]);
+            [state[1][0], state[1][1] + 1]]);
         }
         if (agentY + 2 < numberOfCells) {
-            if (matrix[agentX][agentY+2] != 'W' && //la caja puede ser desplazada
-                matrix[agentX][agentY+1] != 'W' && //puede haber una caja en la siguiente celda
-                !JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY+2])) && //no hay una caja en matrix[agentX][agentY - 2]
-                JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY+1]))) { //hay una caja en matrix[agentX][agentY-1]
+            if (matrix[agentX][agentY + 2] != 'W' && //la caja puede ser desplazada
+                matrix[agentX][agentY + 1] != 'W' && //puede haber una caja en la siguiente celda
+                !JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY + 2])) && //no hay una caja en matrix[agentX][agentY - 2]
+                JSON.stringify(state[0]).includes(JSON.stringify([agentX, agentY + 1]))) { //hay una caja en matrix[agentX][agentY-1]
 
                 var new_boxes_array = []
 
                 for (let i = 0; i < state[0].length; i++) {
-                    if (JSON.stringify(state[0][i]) === JSON.stringify([agentX, agentY+1])) {
-                        new_boxes_array.append([state[0][i][0], state[0][i][1]+2])
+                    if (JSON.stringify(state[0][i]) === JSON.stringify([agentX, agentY + 1])) {
+                        new_boxes_array.push([state[0][i][0], state[0][i][1] + 1])
                     } else {
-                        new_boxes_array.append(JSON.parse(JSON.stringify(state[0][i])))
+                        new_boxes_array.push(JSON.parse(JSON.stringify(state[0][i])))
                     }
                 }
 
                 POSSIBLE_MOVEMENTS.push([new_boxes_array,
-                    [state[1][0], state[1][1]+1]]);
+                    [state[1][0], state[1][1] + 1]]);
             }
         }
     }

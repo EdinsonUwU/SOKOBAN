@@ -29,9 +29,7 @@ async function doStuff() {
     doStuff();
   } else {
     console.log("a")
-    repaint_the_map(canvas, matrix.length);// llamar esta funcion desde el dfs
-    repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
-    paint_new_state(canvas, matrix, state);
+    
     var result = await dfs(canvas, matrix, state)// procesar y pintar
     return result
   }

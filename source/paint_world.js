@@ -63,14 +63,6 @@ export function repaint_matrix(canvas, matriz) {
           peaceBetwenCells,
           peaceBetwenCells
         );
-      } else if (matriz[i][j] == 3) {
-        canvasContext.fillStyle = "rgba(255, 150, 0, 0.5)";
-        canvasContext.fillRect(
-          j * peaceBetwenCells,
-          i * peaceBetwenCells,
-          peaceBetwenCells,
-          peaceBetwenCells
-        );
       }
     }
   }
@@ -86,11 +78,10 @@ export function paint_new_state(canvas, matrix, state){
 
   //paint boxes
   for (var i = 0; i < pos_boxes.length; i++) {
-    console.log(pos_boxes)
     canvasContext.fillStyle = "rgba(200, 200, 200, 0.5)";
     canvasContext.fillRect(
-      pos_boxes[i][0] * peaceBetwenCells,
       pos_boxes[i][1] * peaceBetwenCells,
+      pos_boxes[i][0] * peaceBetwenCells,
       peaceBetwenCells,
       peaceBetwenCells
     );
@@ -99,8 +90,8 @@ export function paint_new_state(canvas, matrix, state){
   //paint agent
   canvasContext.fillStyle = "rgba(0, 200, 200, 0.5)";
   canvasContext.fillRect(
-    pos_agent[0] * peaceBetwenCells,
     pos_agent[1] * peaceBetwenCells,
+    pos_agent[0] * peaceBetwenCells,
     peaceBetwenCells,
     peaceBetwenCells
   );
