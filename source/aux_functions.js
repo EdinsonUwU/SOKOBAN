@@ -9,7 +9,7 @@ export function apply_opperators(matrix,state){
     //state[0] es un array con las coordenadas en [x,y] de las cajas, ej: [[x1,y1],[x2,y2]]
     //state[1] es un array con la pos del agente, ej: [agX,agY]
     //state es ej: [[[x1,y1],[x2,y2]], [agX,agY]]
-    var POSSIBLE_MOVEMENTS = new Array(4);
+    var POSSIBLE_MOVEMENTS = new Array(0);
     if (agentX > 0) {//LEFT_SENSOR
         if (matrix[agentX - 1][agentY] != 'W' &&
             !JSON.stringify(state[0]).includes(JSON.stringify([agentX - 1, agentY]))) {
