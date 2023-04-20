@@ -20,7 +20,7 @@ export async function dfs(canvas, matrix, state) {
             repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
             paint_new_state(canvas, matrix, node);
             //Sleep for 3 seconds
-            await new Promise((r) => setTimeout(r, 1000));
+            await new Promise((r) => setTimeout(r, 250));
 
             const neighbors = apply_opperators(matrix, node)
             console.log(neighbors)

@@ -18,6 +18,7 @@ canvas.height = 480;
 async function doStuff() {
   if (matrix.toString() === "") {//leer todo
     matrix = create_matrix();
+    console.log(matrix)
     pos_boxes = read_pos_boxes();
     pos_agent = read_pos_agent();
     state = [pos_boxes, pos_agent]
