@@ -43,7 +43,6 @@ export function repaint_matrix(canvas, matriz) {
   var canvasWidth = canvas.width;
   var canvasHeight = canvas.height;
   var peaceBetwenCells = canvasWidth / numberOfCells;
-  console.log(numberOfCells);
 
   for (var i = 0; i < numberOfCells; i++) {
     for (var j = 0; j < numberOfCells; j++) {

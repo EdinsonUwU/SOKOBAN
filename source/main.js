@@ -26,11 +26,9 @@ async function doStuff() {
     //repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
     //paint_new_state(canvas, pos_boxes, pos_agent); // llamar esta funcion desde el dfs
     //Sleep for 3 seconds
-    await new Promise((r) => setTimeout(r, 250));
+    await new Promise((r) => setTimeout(r, 1));
     doStuff();
   } else {
-    console.log("a")
-    
     var result = await dfs(canvas, matrix, state)// procesar y pintar
     return result
   }
