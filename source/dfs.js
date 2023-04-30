@@ -46,6 +46,42 @@ export async function dfs(canvas, matrix, state) {
     return null;
 }
 
+export async function dfs_fast(canvas, matrix, state) {
+    //console.log(apply_opperators(matrix,state))
+    //var new_states = apply_opperators(matrix,state)//esto va al allar los nodos hijo
+
+    var stack = [{ node: state, path: [] }]
+    const visited = new Set()
+
+    while (stack.length > 0) {
+        const { node, path } = stack.pop()
+
+        if (!visited.has(JSON.stringify(node))) {
+            visited.add(JSON.stringify(node))
+
+            if (check_end(matrix,node)) {
+                console.log("Path found: ", ...path, " ending on node: ", node)
+                return [node, ...path]
+            }
+
+            if (box_in_corner(matrix,node)){
+                continue;
+            }
+
+            const neighbors = apply_opperators(matrix, node)
+            for (let i = 0; i < neighbors.length; i++) {
+                stack.push({ node: neighbors[i], path: [...path, node] })
+            }
+        }
+    }
+
+    //Sleep for 3 seconds
+    //await new Promise((r) => setTimeout(r, 1000));
+    //console.log("a")
+    //dfs(canvas, matrix, state)
+    return null;
+}
+
 function check_end(matrix, state) {
     const numberOfCells = matrix.length
     const pos_of_all_boxes = state[0]
