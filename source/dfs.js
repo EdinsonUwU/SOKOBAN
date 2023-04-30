@@ -1,10 +1,9 @@
 import { apply_opperators } from "/source/aux_functions.js";
 import { repaint_matrix, repaint_the_map, paint_new_state } from "/source/paint_world.js";
-export async function dfs(canvas, matrix, state) {
-    //console.log(apply_opperators(matrix,state))
-    //var new_states = apply_opperators(matrix,state)//esto va al allar los nodos hijo
 
-    var stack = [{ node: state, path: [] }]
+export async function dfs(canvas, matrix, initial_state) {
+
+    var stack = [{ node: initial_state, path: [] }]
     const visited = new Set()
 
     while (stack.length > 0) {
@@ -15,95 +14,105 @@ export async function dfs(canvas, matrix, state) {
 
             console.log("\n\n")
             console.log("Set of visited nodes: ", visited)
+
             repaint_the_map(canvas, matrix.length);// llamar esta funcion desde el dfs
             repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
-            paint_new_state(canvas, matrix, node);
+            paint_new_state(canvas, matrix, [node.state.boxes_position, [node.state.agent_position.row, node.state.agent_position.column]]);
 
-            if (check_end(matrix,node)) {
+            //Sleep for 3 seconds
+            await new Promise((r) => setTimeout(r, 500));
+
+            if (check_end(matrix, node)) {
                 console.log("Path found: ", ...path, " ending on node: ", node)
                 return [node, ...path]
             }
 
-            if (box_in_corner(matrix,node)){
+            console.log(box_in_corner(matrix, node))
+            if (box_in_corner(matrix, node)) {
                 continue;
             }
-
-            //Sleep for 3 seconds
-            await new Promise((r) => setTimeout(r, 250));
 
             const neighbors = apply_opperators(matrix, node)
             console.log("negihbors of node : ", node, " are ", neighbors)
-            for (let i = 0; i < neighbors.length; i++) {
-                stack.push({ node: neighbors[i], path: [...path, node] })
+            for (let i of neighbors.keys()) {
+                stack.push({ node: i, path: [...path, node] })
             }
         }
     }
-
-    //Sleep for 3 seconds
-    //await new Promise((r) => setTimeout(r, 1000));
-    //console.log("a")
-    //dfs(canvas, matrix, state)
     return null;
 }
 
-export async function dfs_fast(canvas, matrix, state) {
-    //console.log(apply_opperators(matrix,state))
-    //var new_states = apply_opperators(matrix,state)//esto va al allar los nodos hijo
-
-    var stack = [{ node: state, path: [] }]
-    const visited = new Set()
-
-    while (stack.length > 0) {
-        const { node, path } = stack.pop()
-
-        if (!visited.has(JSON.stringify(node))) {
-            visited.add(JSON.stringify(node))
-
-            if (check_end(matrix,node)) {
-                console.log("Path found: ", ...path, " ending on node: ", node)
-                return [node, ...path]
-            }
-
-            if (box_in_corner(matrix,node)){
-                continue;
-            }
-
-            const neighbors = apply_opperators(matrix, node)
-            for (let i = 0; i < neighbors.length; i++) {
-                stack.push({ node: neighbors[i], path: [...path, node] })
-            }
-        }
-    }
-
-    //Sleep for 3 seconds
-    //await new Promise((r) => setTimeout(r, 1000));
-    //console.log("a")
-    //dfs(canvas, matrix, state)
-    return null;
-}
-
-function check_end(matrix, state) {
-    const numberOfCells = matrix.length
-    const pos_of_all_boxes = state[0]
+function check_end(matrix, boxes_and_agent) {
+    const pos_of_all_boxes = boxes_and_agent.state.boxes_position
     const number_of_boxes = pos_of_all_boxes.length
     var number_of_boxes_in_slots = 0;
-    
-    for (let i = 0; i < pos_of_all_boxes.length; i++){
-        const box_column = pos_of_all_boxes[i][1]
-        const box_row = pos_of_all_boxes[i][0]
 
-        if(matrix[box_row][box_column] == 'X'){
+    for (let i = 0; i < number_of_boxes; i++) {
+        const box_row = pos_of_all_boxes[i][0]
+        const box_column = pos_of_all_boxes[i][1]
+
+        if (matrix[box_row][box_column] == 'X') {
             number_of_boxes_in_slots += 1
         }
     }
-    
-    if(number_of_boxes == number_of_boxes_in_slots){
+
+    if (number_of_boxes == number_of_boxes_in_slots) {
         return true
     }
 
     return false
 }
 
-function box_in_corner(matrix,state){
-    return false;
+function box_in_corner(matrix, boxes_and_agent) {
+    const pos_of_all_boxes = boxes_and_agent.state.boxes_position
+    const number_of_boxes = pos_of_all_boxes.length
+    var box_row;
+    var box_column;
+
+    for (let i = 0; i < number_of_boxes; i++) {
+        box_row = pos_of_all_boxes[i][0]
+        box_column = pos_of_all_boxes[i][1]
+        console.log([box_row, box_column])
+        var wall_at_right = false
+        var wall_at_left = false
+        var wall_at_up = false
+        var wall_at_down = false
+        //
+        if (box_column > 0) {
+            if ((matrix[box_row][box_column - 1] == 'W')) {
+                wall_at_left = true
+            }
+        }
+        if (box_column + 1 < matrix[0].length) {
+            if ((matrix[box_row][box_column + 1] == 'W')) {
+                wall_at_right = true
+            }
+        }
+        if (box_row > 0) {
+            if ((matrix[box_row - 1][box_column] == 'W')) {
+                wall_at_up = true
+            }
+        }
+        if (box_row + 1 < matrix.length) {
+            if ((matrix[box_row + 1][box_column] == 'W')) {
+                wall_at_down = true
+            }
+        }
+
+        if ((wall_at_up && wall_at_left) || (wall_at_up && wall_at_right)) {
+            if (matrix[box_row][box_column] != 'X') {
+                return true
+            }
+        }
+
+        if ((wall_at_down && wall_at_left) || (wall_at_down && wall_at_right)) {
+            if (matrix[box_row][box_column] != 'X') {
+                return true
+            }
+        }
+    }
+
+
+
+    return false
 }

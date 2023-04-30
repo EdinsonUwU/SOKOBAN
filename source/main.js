@@ -35,14 +35,22 @@ async function awaitInput() {
   if (userInput.value === "") {//Usuario no ha ingresado nada
   }
   else if (dfs_on_progress || bfs_on_progress || bfsi_on_progress) {//Usuario presiono un boton
-    console.log("avdva")
     matrix = create_matrix();
     pos_boxes = read_pos_boxes();
     pos_agent = read_pos_agent();
-    state = [pos_boxes, pos_agent]
-    console.log("dsvsdv")
-    
-    if (dfs_on_progress) await dfs(canvas, matrix, state)// procesar y pintar
+
+    var initial_pos = {
+      operator: "",
+      state: {
+        boxes_position: pos_boxes,
+        agent_position: {
+          row: pos_agent[0],
+          column: pos_agent[1]
+        }
+      }
+    }
+   
+    if(dfs_on_progress) await dfs(canvas, matrix, initial_pos)// procesar y pintar
 
     dfs_button.disable = true
     bfs_button.disable = true
@@ -51,8 +59,8 @@ async function awaitInput() {
     //return
     //return //no seguir esperando a que el usuario haga algo (entre una entrada/oprima boton)
   }
-  await new Promise((r) => setTimeout(r, 1));
-  awaitInput();
-}
+    await new Promise((r) => setTimeout(r, 1));
+    awaitInput();
+  }
 
-awaitInput();
+  awaitInput();
