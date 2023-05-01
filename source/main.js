@@ -56,8 +56,6 @@ async function awaitInput() {
     bfs_button.disable = true
     bfsi_button.disable = true
     return
-    //return
-    //return //no seguir esperando a que el usuario haga algo (entre una entrada/oprima boton)
   }
     await new Promise((r) => setTimeout(r, 1));
     awaitInput();

@@ -1,6 +1,8 @@
 import { apply_opperators } from "/source/aux_functions.js";
 import { repaint_matrix, repaint_the_map, paint_new_state } from "/source/paint_world.js";
 
+const order_of_adding_childs_states = ['UP', 'DOWN', 'LEFT', 'RIGHT']
+
 export async function dfs(canvas, matrix, initial_state) {
 
     var stack = [{ node: initial_state, path: [] }]
@@ -20,14 +22,16 @@ export async function dfs(canvas, matrix, initial_state) {
             paint_new_state(canvas, matrix, [node.state.boxes_position, [node.state.agent_position.row, node.state.agent_position.column]]);
 
             //Sleep for 3 seconds
-            await new Promise((r) => setTimeout(r, 500));
+            await new Promise((r) => setTimeout(r, 0));
 
             if (check_end(matrix, node)) {
                 console.log("Path found: ", ...path, " ending on node: ", node)
+                //crear funcion que imprime el camino en path
+                var dfs_output_html = document.getElementById('dfs-output')
+                dfs_output_html.value = path.join('')
                 return [node, ...path]
             }
 
-            console.log(box_in_corner(matrix, node))
             if (box_in_corner(matrix, node)) {
                 continue;
             }
@@ -35,7 +39,9 @@ export async function dfs(canvas, matrix, initial_state) {
             const neighbors = apply_opperators(matrix, node)
             console.log("negihbors of node : ", node, " are ", neighbors)
             for (let i of neighbors.keys()) {
-                stack.push({ node: i, path: [...path, node] })
+                //crear una funcion push_orderly, y que meta en path la primera letra de la operacion
+                //stack.push({ node: i, path: [...path, node] })
+                push_orderly(stack,i,path)
             }
         }
     }
@@ -112,7 +118,37 @@ function box_in_corner(matrix, boxes_and_agent) {
         }
     }
 
-
-
     return false
+}
+
+function push_orderly(stack, node, path) {
+    
+    if (node.operator == 'RIGHT') {
+        stack.push({
+            node: node,
+            path: [...path, 'R']
+        })
+    }
+
+    if (node.operator == 'LEFT') {
+        stack.push({
+            node: node,
+            path: [...path, 'L']
+        })
+    }
+
+    if (node.operator == 'DOWN') {
+        stack.push({
+            node: node,
+            path: [...path, 'D']
+        })
+    }
+
+    if (node.operator == 'UP') {
+        stack.push({
+            node: node,
+            path: [...path, 'U']
+        })
+    }
+    return stack
 }
