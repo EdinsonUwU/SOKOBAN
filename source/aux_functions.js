@@ -195,3 +195,77 @@ export function apply_opperators(matrix, movement) {
 
     return POSSIBLE_MOVEMENTS_v2
 }
+
+export function check_end(matrix, boxes_and_agent) {
+    const pos_of_all_boxes = boxes_and_agent.state.boxes_position
+    const number_of_boxes = pos_of_all_boxes.length
+    var number_of_boxes_in_slots = 0;
+
+    for (let i = 0; i < number_of_boxes; i++) {
+        const box_row = pos_of_all_boxes[i][0]
+        const box_column = pos_of_all_boxes[i][1]
+
+        if (matrix[box_row][box_column] == 'X') {
+            number_of_boxes_in_slots += 1
+        }
+    }
+
+    if (number_of_boxes == number_of_boxes_in_slots) {
+        return true
+    }
+
+    return false
+}
+
+
+export function box_in_corner(matrix, boxes_and_agent) {
+    const pos_of_all_boxes = boxes_and_agent.state.boxes_position
+    const number_of_boxes = pos_of_all_boxes.length
+    var box_row;
+    var box_column;
+
+    for (let i = 0; i < number_of_boxes; i++) {
+        box_row = pos_of_all_boxes[i][0]
+        box_column = pos_of_all_boxes[i][1]
+        console.log([box_row, box_column])
+        var wall_at_right = false
+        var wall_at_left = false
+        var wall_at_up = false
+        var wall_at_down = false
+        //
+        if (box_column > 0) {
+            if ((matrix[box_row][box_column - 1] == 'W')) {
+                wall_at_left = true
+            }
+        }
+        if (box_column + 1 < matrix[0].length) {
+            if ((matrix[box_row][box_column + 1] == 'W')) {
+                wall_at_right = true
+            }
+        }
+        if (box_row > 0) {
+            if ((matrix[box_row - 1][box_column] == 'W')) {
+                wall_at_up = true
+            }
+        }
+        if (box_row + 1 < matrix.length) {
+            if ((matrix[box_row + 1][box_column] == 'W')) {
+                wall_at_down = true
+            }
+        }
+
+        if ((wall_at_up && wall_at_left) || (wall_at_up && wall_at_right)) {
+            if (matrix[box_row][box_column] != 'X') {
+                return true
+            }
+        }
+
+        if ((wall_at_down && wall_at_left) || (wall_at_down && wall_at_right)) {
+            if (matrix[box_row][box_column] != 'X') {
+                return true
+            }
+        }
+    }
+
+    return false
+}
