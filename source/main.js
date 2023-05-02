@@ -59,7 +59,7 @@ async function awaitInput() {
     //await track_result(result)
     dfs_button.disable = true
     bfs_button.disable = true
-    bfsi_button.disable = true
+    dfsi_button.disable = true
     return
   }
     await new Promise((r) => setTimeout(r, 1));
