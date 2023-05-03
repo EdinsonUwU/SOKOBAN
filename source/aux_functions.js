@@ -1,3 +1,14 @@
+/**
+ * La funcion apply_opperators, toma una matriz para conocer la posicion de las paredes y los nodos meta.
+ * y toma como segundo parametro, movement, que es un diccionario, con keys operator y state.
+ * Apartir de las propiedades del state, la funcion extrae: la posicion del agente, y la posicion de las cajas.
+ * Con esas posiciones, mira los nodos vecinos que son posibles a partir de la matriz.
+ * Cada operador, UP, DOWN, LEFT, RIGHT, puede llevar a mover el agente una posicion y mantener la posicion
+ * de las cajas, o puede llevar a mover el agente una posicion y mover la posicion de una de las cajas.
+ * @param {Array} matrix 
+ * @param {Dict} movement 
+ * @returns 
+ */
 export function apply_opperators(matrix, movement) {
     var numberOfCells = matrix.length
     var agentRow = movement.state.agent_position.row
@@ -196,6 +207,13 @@ export function apply_opperators(matrix, movement) {
     return POSSIBLE_MOVEMENTS_v2
 }
 
+/**
+ * La funcion check_end, que toma una matriz, y las posiciones del las cajas y el agente en un array,
+ * revisa si las posiciones de las cajas son iguales a las posiciones metas escritas en la matriz
+ * @param {Array} matrix 
+ * @param {Array} boxes_and_agent 
+ * @returns 
+ */
 export function check_end(matrix, boxes_and_agent) {
     const pos_of_all_boxes = boxes_and_agent.state.boxes_position
     const number_of_boxes = pos_of_all_boxes.length
@@ -217,7 +235,15 @@ export function check_end(matrix, boxes_and_agent) {
     return false
 }
 
-
+/**
+ * La funcion box_in_corner, toma una matriz, y un array con las posiciones de las cajas y el agente.
+ * Revisa si cada caja tiene arriba e izquierda, o arriba o derecha, o abajo y derecha, o abajo e izquierda
+ * cajas, que impidan moverse. Esta funcion se usa para saber si vale la pena seguir procesando los hijos
+ * de un nodo, en este caso, un nodo resumido en las posiciones de las cajas y el agente.
+ * @param {Array} matrix 
+ * @param {Array} boxes_and_agent 
+ * @returns Boolean
+ */
 export function box_in_corner(matrix, boxes_and_agent) {
     const pos_of_all_boxes = boxes_and_agent.state.boxes_position
     const number_of_boxes = pos_of_all_boxes.length
@@ -227,7 +253,6 @@ export function box_in_corner(matrix, boxes_and_agent) {
     for (let i = 0; i < number_of_boxes; i++) {
         box_row = pos_of_all_boxes[i][0]
         box_column = pos_of_all_boxes[i][1]
-        console.log([box_row, box_column])
         var wall_at_right = false
         var wall_at_left = false
         var wall_at_up = false

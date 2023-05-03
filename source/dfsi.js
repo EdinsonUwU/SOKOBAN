@@ -1,5 +1,5 @@
 import { apply_opperators, check_end, box_in_corner } from "/source/aux_functions.js";
-import { repaint_matrix, repaint_the_map, paint_new_state } from "/source/paint_world.js";
+import { repaint_matrix, paint_new_state } from "/source/paint_world.js";
 
 export async function dfsi(canvas, matrix, initial_state) {
 
@@ -18,7 +18,6 @@ export async function dfsi(canvas, matrix, initial_state) {
                 console.log("\n\n")
                 console.log("Set of visited nodes: ", visited)
 
-                repaint_the_map(canvas, matrix.length);// llamar esta funcion desde el dfs
                 repaint_matrix(canvas, matrix);// llamar esta funcion desde el dfs
                 paint_new_state(canvas, matrix, [node.state.boxes_position, [node.state.agent_position.row, node.state.agent_position.column]]);
 
@@ -30,7 +29,7 @@ export async function dfsi(canvas, matrix, initial_state) {
                     //crear funcion que imprime el camino en path
                     var dfsi_output_html = document.getElementById('dfsi-output')
                     dfsi_output_html.value = path.join('')
-                    return [node, ...path]
+                    return path.join('')
                 }
 
                 if (box_in_corner(matrix, node)) {

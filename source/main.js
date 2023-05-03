@@ -6,7 +6,6 @@ import { create_matrix, read_pos_agent, read_pos_boxes } from "/source/read_inpu
 var matrix = [];
 var pos_boxes = [];
 var pos_agent = [];
-var state = [pos_boxes, pos_agent]
 
 var canvas = document.getElementById("canvas");
 var userInput = document.getElementById("textarea")
@@ -23,14 +22,13 @@ var bfs_on_progress = false
 var dfsi_on_progress = false
 
 reload_button.addEventListener("click", () => { document.location.reload() })
-dfs_button.addEventListener("click", () => { dfs_on_progress = true; console.log(dfs_on_progress); console.log(dfs_on_progress || bfs_on_progress || bfsi_on_progress) })
+dfs_button.addEventListener("click", () => { dfs_on_progress = true})
 bfs_button.addEventListener("click", () => { bfs_on_progress = true })
 dfsi_button.addEventListener("click", () => { dfsi_on_progress = true })
 
 /**
- * La funcion awaitInput se usa para saber cuando el usuario pega lo que quieres
+ * La funcion awaitInput se usa para saber cuando el usuario pega lo que quiere
  * correr.
- * 
  * @returns 
  */
 async function awaitInput() {
@@ -56,7 +54,7 @@ async function awaitInput() {
     if(dfs_on_progress) result = await dfs(canvas, matrix, initial_pos)// procesar y pintar
     else if(bfs_on_progress) result = await bfs(canvas, matrix, initial_pos)// procesar y pintar
     else if(dfsi_on_progress) result = await dfsi(canvas, matrix, initial_pos)// procesar y pintar
-    //await track_result(result)
+    //await track_result(result) //dada un string como LRLUD, mostrar la solucion paso a paso
     dfs_button.disable = true
     bfs_button.disable = true
     dfsi_button.disable = true
