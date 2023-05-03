@@ -1,0 +1,24 @@
+{
+  "name": "sokoban",
+  "version": "1.0.0",
+  "description": "Primer proyecto de programacion de la materia inteligencia artificial, spring 2023, universidad del valle.\r ![Alt text](https://github.com/EdinsonUwU/SOKOBAN/blob/main/view.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdinsonUwU/SOKOBAN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdinsonUwU/SOKOBAN/issues"
+  },
+  "homepage": "https://github.com/EdinsonUwU/SOKOBAN#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
