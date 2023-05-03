@@ -1,4 +1,8 @@
-
+/**
+ * La funcion create_matrix lee lo que el usuario ha pegado/escrito en el text area. Y lo guarda en un
+ * array de array
+ * @returns array
+ */
 export function create_matrix() {
   var matriz_leida = [];
   var rows = read_user_input();
@@ -16,12 +20,15 @@ export function create_matrix() {
     }
     length_of_matrix++
   }
-  console.log(matriz_leida)
   return matriz_leida;
 }
 
+/**
+ * La funcion read_pos_agent lee la posicion del agente que el usuario pego/escribio en el text area y lo
+ * guarda/retorna un array con esas coordenadas
+ * @returns array
+ */
 export function read_pos_agent() {
-  var matriz_leida = [];
   var rows = read_user_input()
 
   if (rows === "") {
@@ -45,8 +52,12 @@ export function read_pos_agent() {
   return [parseInt(agent_cords[0]), parseInt(agent_cords[1])]
 }
 
+/**
+ * La funcion read_pos_boxes lee la posicion de las cajas que el usuairo pego/escribio en el text area y
+ * lo guarda/retorna en un array de arrays con las posiciones/coordenadas de cada una de las cajas
+ * @returns array
+ */
 export function read_pos_boxes() {
-  var matriz_leida = [];
   var rows = read_user_input()
 
   if (rows === "") {
@@ -79,6 +90,12 @@ export function read_pos_boxes() {
   return pos_boxes
 }
 
+/**
+ * La funcion read_user_input retorna un array de longitud igual a la cantidad de lineas de lo que el usuario 
+ * escribio en el text area. Cada poiscion del array, es una linea de texto, que contiene lo que el usuario
+ * escribio en esa linea.
+ * @returns array
+ */
 function read_user_input() {
   var textarea = document.getElementById("textarea");
   var textarea_value = textarea.value;

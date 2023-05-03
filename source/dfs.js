@@ -9,7 +9,7 @@ import { repaint_matrix, paint_new_state } from "/source/paint_world.js";
  * @param {html} canvas 
  * @param {Array} matrix 
  * @param {dict} initial_state 
- * @returns 
+ * @returns string
  */
 export async function dfs(canvas, matrix, initial_state) {
 

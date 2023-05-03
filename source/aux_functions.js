@@ -7,7 +7,7 @@
  * de las cajas, o puede llevar a mover el agente una posicion y mover la posicion de una de las cajas.
  * @param {Array} matrix 
  * @param {Dict} movement 
- * @returns 
+ * @returns array
  */
 export function apply_opperators(matrix, movement) {
     var numberOfCells = matrix.length

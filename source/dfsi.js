@@ -1,6 +1,20 @@
 import { apply_opperators, check_end, box_in_corner } from "/source/aux_functions.js";
 import { repaint_matrix, paint_new_state } from "/source/paint_world.js";
 
+/**
+ * La funcion dfsi, usa el algoritmo deep first search iterative para dar solucion a un estado de el juego de sokoban.
+ * Primero mira si el nodo initial_state es meta, si no lo es, explora sus vecinos.
+ * Para implementar este algoritmo se usa una stack/pila.
+ * Los vecinos son añadidos en la pila en el orden: right, left, down, up.
+ * Para asi primero checkear si el nodo despues del operador up es meta, y si no lo es explora sus vecinos...
+ * Hasta cuando se llega a una determinada profundidad (10), el algoritmo es practicamente dfs, pero, cuando todos los nodos
+ * ya son de una determindad profundidad +  1, se sigue con cada nodo de esa profundiad, hasta que todos los nodos de esa
+ * profundidad son explorados y verificados, y asi sucesivamente hasta encontrar una solucion.
+ * @param {canvas} canvas 
+ * @param {Array} matrix 
+ * @param {dict} initial_state 
+ * @returns string
+ */
 export async function dfsi(canvas, matrix, initial_state) {
 
     var stack = [{ node: initial_state, path: [], depth: 0 }]
@@ -53,7 +67,18 @@ export async function dfsi(canvas, matrix, initial_state) {
     }
 }
 
-
+/**
+ * La funcion push_orderly, mete al stack, los vecinos/neighbors.
+ * La primera letra del operador, es añadida al final del string path,
+ * que contiene el camino que se uso para llegar a ese nodo.
+ * Debido a que en la pila, el ultimo en la pila, es el primero que se procesa,
+ * Se mete primero al nodo al cual se llega por medio de la operacion RIGHT, luego,LEFT,
+ * DOWN, y por ultimo UP, para asi procesar el nodo despues del operador UP primero.
+ * 
+ * @param {Array} stack 
+ * @param {Array} neighbors 
+ * @param {String} path 
+ */
 function push_orderly(stack, neighbors, path, depth) {
 
     for (let node of neighbors) {
