@@ -22,6 +22,8 @@ Primer proyecto de programacion de la materia inteligencia artificial, spring 20
 ```
         http://localhost:3000/
 ```
+##### Consideraciones para usar la url/programa:
+Antes de correr un nuevo algoritmo, recargar la pagina.
 ##### Autores:
 * Alessandro Díaz alessandro.diaz@correounivalle.edu.co
 * Edinson Dorado edinson.dorado@correounivalle.edu.co
