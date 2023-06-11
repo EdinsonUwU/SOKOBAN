@@ -33,7 +33,7 @@ h2,
     margin-left: 30px;
     margin-top: 15px;
     font-weight: bold;
-    background-image: linear-gradient(79deg, #094b5b, #0c3742 20%, #012a3d);
+    background-image: linear-gradient(79deg, #094b5b, #0c3742 20%, #ecf4f7);
 }
 
 .div-buttons-class {
@@ -49,7 +49,7 @@ h2,
     min-height: 10vh;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #15a7eb);
+    background-image: linear-gradient(79deg, #77c6da, #57d8f8 20%, #b6c7cf);
 }
 
 .div-canvas-and-buttons-class{
