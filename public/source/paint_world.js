@@ -13,9 +13,11 @@ export function repaint_matrix(canvas, matrix) {
   var canvasHeight = canvas.height;
   var peaceBetwenCells = canvasWidth / numberOfCells;
 
+
+
   for (var i = 0; i < numberOfCells; i++) {
     for (var j = 0; j < numberOfCells; j++) {
-      try{
+      try {
         if (matrix[i][j] == "W") {
           canvasContext.fillStyle = "rgba(0, 0, 0)";
           canvasContext.fillRect(
@@ -36,11 +38,45 @@ export function repaint_matrix(canvas, matrix) {
           canvasContext.fillStyle = "rgba(130, 150, 210)";
           canvasContext.fillRect(j * peaceBetwenCells, i * peaceBetwenCells, peaceBetwenCells, peaceBetwenCells);
         }
-      }catch{
+      } catch {
         canvasContext.fillStyle = "rgba(50, 50, 50)";
         canvasContext.fillRect(j * peaceBetwenCells, i * peaceBetwenCells, peaceBetwenCells, peaceBetwenCells);
-        
+
       }
+
+    }
+  }
+  for (var i = 0; i < numberOfCells; i++) {
+    for (var j = 0; j <= numberOfCells; j++) {
+      canvasContext.strokeStyle = "rgb(169, 169, 169)";
+      // Define a new path
+      canvasContext.beginPath();
+
+      // Set a start-point
+      canvasContext.moveTo(i * peaceBetwenCells, 0);
+
+      // Set an end-point
+      canvasContext.lineTo(i * peaceBetwenCells, j * peaceBetwenCells,);
+
+      // Stroke it (Do the Drawing)
+      canvasContext.stroke();
+
+    }
+  }
+  for (var i = 0; i < numberOfCells; i++) {
+    for (var j = 0; j <= numberOfCells; j++) {
+      canvasContext.strokeStyle = "rgb(169, 169, 169)";
+      // Define a new path
+      canvasContext.beginPath();
+
+      // Set a start-point
+      canvasContext.moveTo(0, i * peaceBetwenCells);
+
+      // Set an end-point
+      canvasContext.lineTo(j * peaceBetwenCells, i * peaceBetwenCells,);
+
+      // Stroke it (Do the Drawing)
+      canvasContext.stroke();
 
     }
   }
@@ -71,7 +107,6 @@ export function paint_new_state(canvas, matrix, state) {
       peaceBetwenCells
     );
   }
-
   //paint agent
   canvasContext.fillStyle = "rgba(255, 0, 0)";
   canvasContext.fillRect(

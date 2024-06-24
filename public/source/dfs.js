@@ -29,7 +29,7 @@ export async function dfs(canvas, matrix, initial_state) {
             paint_new_state(canvas, matrix, [node.state.boxes_position, [node.state.agent_position.row, node.state.agent_position.column]]);
 
             //Sleep for 3 seconds
-            await new Promise((r) => setTimeout(r, 0));
+            await new Promise((r) => setTimeout(r, 25));
 
             if (check_end(matrix, node)) {
 

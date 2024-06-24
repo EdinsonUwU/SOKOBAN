@@ -1,44 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <title>Sokoban</title>
 </head>
 
 <body>
     <div class="big-container">
-        <div class="header-container">
+        <!-- Header Section -->
+        <header class="header-container">
             <h2>SOKOBAN</h2>
-        </div>
-        <div class="div-body-class">
-            <div class="div-canvas-and-buttons-class">
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="div-body-class">
+            <div class="div-canvas-and-textarea-class">
                 <div class="div-canvas-class">
                     <canvas class="canvas-class" id="canvas"></canvas>
-                    <br />
                 </div>
-                <div class="div-buttons-class">
-                    <button class="button-reload-class" id="button-reload">RELOAD</button>
-                    <button class="button-dfs-class" id="button-dfs">DFS</button>
-                    <button class="button-bfs-class" id="button-bfs">BFS</button>
-                    <button class="button-dfsi-class" id="button-dfsi">DFSI</button>
+                <div class="div-textarea-class">
+                    <textarea id="textarea" name="textarea" rows="10" cols="30" 
+                        placeholder='Before running an algorithm, first copy paste your input here. Then you can click on the button of the algorithm of your liking.'>
+WWWWWW
+W000WW
+WX0X0W
+W00W0W
+W0000W
+WWWWWW
+1,1
+2,2
+3,2</textarea>
+
+                    <!-- Output Textareas -->
+                    <div class="div-output-texts-class">
+                        <textarea id="dfs-output" name="dfs-output" rows="2" cols="30"
+                            placeholder="DFS's Final Solution will appear here"></textarea>
+                        <textarea id="bfs-output" name="bfs-output" rows="2" cols="30"
+                            placeholder="BFS's Solution will appear here"></textarea>
+                        <textarea id="dfsi-output" name="dfsi-output" rows="2" cols="30"
+                            placeholder="DFSI's Solution will appear here"></textarea>
+                    </div>
                 </div>
             </div>
 
-            <div class="div-texts-class">
-                <textarea id="textarea" name="textarea" rows="10" cols="50"
-                    placeholder="Before running an algorithm, first copy paste your input here. Then you can click on the button of the algorithm of your liking"></textarea>
-                <textarea id="dfs-output" name="dfs-output" rows="2" cols="50"
-                    placeholder="DFS's Final Solution will appear here"></textarea>
-                <textarea id="bfs-output" name="bfs-output" rows="2" cols="50"
-                placeholder="BFS's Solution will appear here"></textarea>
-                <textarea id="dfsi-output" name="dfsi-output" rows="2" cols="50"
-                placeholder="DFSI's Solution will appear here"></textarea>
+            <!-- Buttons Section -->
+            <div class="div-buttons-class">
+                <button class="button-reload-class" id="button-reload">RELOAD</button>
+                <button class="button-dfs-class" id="button-dfs">DFS</button>
+                <button class="button-bfs-class" id="button-bfs">BFS</button>
+                <button class="button-dfsi-class" id="button-dfsi">DFSI</button>
             </div>
-
-        </div>
+        </main>
     </div>
-    <script type="module" src="/source/main.js"></script>
 
+    <!-- Main JavaScript File -->
+    <script type="module" src="/source/main.js"></script>
 </body>
 
 </html>
